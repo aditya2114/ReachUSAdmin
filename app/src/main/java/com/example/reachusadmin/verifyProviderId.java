@@ -79,7 +79,7 @@ public class verifyProviderId extends AppCompatActivity {
                 DocumentReference documentReference=fStore.collection("Services").document("userId"+providerUserId);
                 Map<String, Object> verified=new HashMap<>();
                 verified.put("isIdVerified",true);
-                documentReference.set(verified);
+                documentReference.set(verified,SetOptions.merge());
                 Toast.makeText(verifyProviderId.this,"Id Verified",Toast.LENGTH_LONG).show();
             }
         });
