@@ -88,7 +88,7 @@ public class Login_page extends AppCompatActivity {
         s_email = email.getText().toString();
         s_pass = password.getText().toString();
 
-        if(s_email.equals("sangaveaditya2003@gmail.com")){
+        if(s_email.equals("sangaveaditya2003@gmail.com") ||s_email.equals("ksanket114402@gmail.com")){
             mAuth.signInWithEmailAndPassword(s_email,s_pass)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
