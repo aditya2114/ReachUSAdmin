@@ -47,17 +47,15 @@ public class verifyProviderId extends AppCompatActivity {
             providerUserId=extras.getString("provideruserId");
         }
         Log.d("Data", providerUserId+"");
-        storageReference = FirebaseStorage.getInstance().getReference().child(providerUserId).child("Idproof.jpg");
+        storageReference = FirebaseStorage.getInstance().getReferenceFromUrl("gs://reachus-95f46.appspot.com").child(providerUserId).child("Idproof.jpg");
         verify=findViewById(R.id.verify);
         idProof=findViewById(R.id.idProof);
         fStore=FirebaseFirestore.getInstance();
         mAuth=FirebaseAuth.getInstance();
 
-//        StorageReference fileReference = storageReference.child("Idproof");
-//        Glide.with(this).load(fileReference).into(idProof);
-
+        Log.d("storageRef", storageReference+"");
         try {
-            final File localfile=File.createTempFile("Idproof","jpg");
+            final File localfile=File.createTempFile("providerIdProof","jpg");
             storageReference.getFile(localfile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
@@ -67,6 +65,7 @@ public class verifyProviderId extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
+                    Log.d("Exception",e.getMessage()+"");
                     Toast.makeText(getApplicationContext(),"Failed",Toast.LENGTH_LONG);
                 }
             });

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-    View repairingCardView,maidCardView,cleaningCardView,carCardView;
+    View repairingCardView,maidCardView,cleaningCardView,carCardView,tutorCardView,pcontrolCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         maidCardView=findViewById(R.id.maidCardView);
         cleaningCardView=findViewById(R.id.cleaningCardView);
         carCardView=findViewById(R.id.carCardView);
+        tutorCardView=findViewById(R.id.tutorCardView);
+        pcontrolCardView=findViewById(R.id.pasteCardView);
 
         repairingCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +50,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Services.class);
                 intent.putExtra("Job", "Sanitizing");
+                startActivity(intent);
+            }
+        });
+        tutorCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Services.class);
+                intent.putExtra("Job", "Tutor");
+                startActivity(intent);
+            }
+        });
+        pcontrolCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Services.class);
+                intent.putExtra("Job", "Paste");
                 startActivity(intent);
             }
         });

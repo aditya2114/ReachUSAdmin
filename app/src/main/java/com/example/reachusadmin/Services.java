@@ -56,6 +56,13 @@ public class Services extends AppCompatActivity {
         else if(job.equals("Sanitizing")){
             query = fStore.collection("Services").whereEqualTo("mainJob", "Cleaning Service");
         }
+        else if(job.equals("Tutor")){
+            Log.d("Service is", job+"");
+            query = fStore.collection("Services").whereEqualTo("mainJob", "Home Tutor");
+        }
+        else if(job.equals("Paste")){
+            query = fStore.collection("Services").whereEqualTo("mainJob", "Paste Control");
+        }
 
 
         FirestoreRecyclerOptions<servicesAttributes> options=new FirestoreRecyclerOptions.Builder<servicesAttributes>().setQuery(query,servicesAttributes.class).build();
