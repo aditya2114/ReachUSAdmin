@@ -30,8 +30,6 @@ public class Login_page extends AppCompatActivity {
     String s_email,s_pass;
     Button login,forgot_pass,signup;
     private long pressedTime;
-    private FirebaseAuth mAuth=null;
-    FirebaseUser fuser;
     ProgressBar pg;
 
     @Override
@@ -43,11 +41,9 @@ public class Login_page extends AppCompatActivity {
         email = findViewById(R.id.l_email);
         password = findViewById(R.id.l_password);
         login = findViewById(R.id.login_button);
-        forgot_pass = findViewById(R.id.forgotpasword_button);
-        signup = findViewById(R.id.Sign_up_button);
+
         pg = findViewById(R.id.pg1);
 
-        mAuth = FirebaseAuth.getInstance();
 
         show_pass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -88,35 +84,19 @@ public class Login_page extends AppCompatActivity {
         s_email = email.getText().toString();
         s_pass = password.getText().toString();
 
-        if(s_email.equals("sangaveaditya2003@gmail.com")){
-            mAuth.signInWithEmailAndPassword(s_email,s_pass)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful())
-                            {
-                                if(mAuth.getCurrentUser().isEmailVerified()){
-                                    pg.setVisibility(View.GONE);
-                                    Toast.makeText(Login_page.this,"Sign-In Sucessfull",Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(Login_page.this,MainActivity.class);
-                                    startActivity(i);
-                                    finish();
-                                }
-                                else{
-                                    pg.setVisibility(View.GONE);
-                                    Toast.makeText(Login_page.this,"Please Verify your Email First",Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                            else
-                            {
-                                pg.setVisibility(View.GONE);
+        if(s_email.equals("teamreachus247@gmail.com"))
+        {
+            if(s_pass.equals("reachusadmin")) {
 
-                                Log.w(TAG,"Failed to Sign-in",task.getException());
-                                Toast.makeText(Login_page.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                pg.setVisibility(View.GONE);
+                Toast.makeText(Login_page.this, "Sign-In Sucessfull", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(Login_page.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+
         }else {
+            pg.setVisibility(View.GONE);
             Toast.makeText(Login_page.this,"You are not an Admin",Toast.LENGTH_LONG);
         }
 
